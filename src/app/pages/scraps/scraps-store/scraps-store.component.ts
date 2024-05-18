@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsMocks } from './mocks/products-mock';
 
 @Component({
   selector: 'app-scraps-store',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scraps-store.component.scss']
 })
 export class ScrapsStoreComponent implements OnInit {
-
+  public productList = ProductsMocks;
   constructor() { }
 
   ngOnInit() {

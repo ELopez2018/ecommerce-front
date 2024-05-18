@@ -1,0 +1,12 @@
+<div class="product-card">
+  <div class="card" style="width: 100%;">
+    <div class="image-container">
+      <img src="{{item.urlImage}}"  alt="{{item.title}}">
+    </div>
+    <h5 class="card-title text-center">{{item.title}}</h5>
+    <div class="card-body text-center">
+      <p class="card-description" [innerHTML]="item.descripcion" ></p>
+      <p class="card-price"> <span>Precio:</span> <span>$ {{ item.total | number:".2-2"}}</span> </p>
+    </div>
+  </div>
+</div>

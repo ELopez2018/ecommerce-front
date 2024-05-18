@@ -1,5 +1,7 @@
 export interface Item {
-  descripciom: string;
+  title: string
+  urlImage: string
+  descripcion: string;
   precio: number;
   iva: number;
   total: number;

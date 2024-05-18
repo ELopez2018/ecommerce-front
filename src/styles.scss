@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+/*
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... }
+
+*/
+
+html,
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.active {
+  font-weight: bolder;
+  color: rgb(248, 113, 2) !important;
+}

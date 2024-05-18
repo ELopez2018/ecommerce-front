@@ -1,0 +1,66 @@
+<div class="menu-responsive">
+  <nav class="navbar navbar-expand-lg" style="background-color: #fafafa;">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <cart-button></cart-button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/inicio"
+              [routerLinkActive]="'active'"
+              aria-current="page"
+              href="#"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >Inicio</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/retazos"
+              routerLinkActive="active"
+              [routerLinkActive]="'active'"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >Neyi</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              class="nav-link"
+              routerLink="/mascotas"
+              [routerLinkActive]="'active'"
+              >Mascotas</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</div>
+

@@ -1,3 +1,7 @@
-<p>
-  scraps-store works!
-</p>
+<div class="container-fluid pt-5 retasos">
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let item of productList">
+      <product-card [item]="item"></product-card>
+    </div>
+  </div>
+</div>
