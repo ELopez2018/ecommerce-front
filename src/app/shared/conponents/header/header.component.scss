@@ -13,6 +13,16 @@
   .title {
     font-weight: bold;
   }
+  .input-search{
+    border-radius: 60px;
+    border-color: rgb(12, 176, 218);
+    border-width: 1px;
+  }
+  .icon-search{
+    border-radius: 50px;
+    background-color: rgb(12, 176, 218);
+    color: rgb(255, 255, 255);
+  }
 }
 
 @media (min-width: 992px) {
