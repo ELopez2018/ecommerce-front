@@ -1,0 +1,25 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="img-select-wrapper">
+        <div class="img-select">
+          <img src="{{ product.urlImage }}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 align-content-center">
+      <div class="info">
+        <p class="card-title">{{ product.title | uppercase }}</p>
+        <rating></rating>
+        <p class="card-price">
+          <span>$ {{ product.total | number : ".2-2" }}</span>
+        </p>
+        <p class="card-description">Descripción</p>
+        <p class="card-description" [innerHTML]="product.descripcion"></p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-success shadow px-5" (click)="sendCart()" >Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>

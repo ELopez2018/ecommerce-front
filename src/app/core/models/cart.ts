@@ -30,13 +30,13 @@ export class Cart {
     return this.items.length;
   }
   public getSubTotal(): number {
-    return this.items.reduce((total, item) => total + item.precio, 0);
+    return this.items.reduce((total, item) => total + (item.precio +  item.cantidad), 0);
   }
   public getTaxe(): number {
-    return this.items.reduce((total, item) => total + item.iva, 0);
+    return this.items.reduce((total, item) => total + (item.iva * item.cantidad), 0);
   }
   public getTotal(): number {
-    return this.items.reduce((total, item) => total + item.total, 0);
+    return this.items.reduce((total, item) => total + (item.total * item.cantidad), 0);
   }
 
 }

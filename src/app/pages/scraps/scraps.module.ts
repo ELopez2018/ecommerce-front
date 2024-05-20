@@ -6,16 +6,20 @@ import { ScrapsHeaderComponent } from './scraps-header/scraps-header.component';
 import { ScrapsHomeComponent } from './scraps-home/scraps-home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ScrapsStoreComponent } from './scraps-store/scraps-store.component';
+import { RouterModule } from '@angular/router';
+import { ScrapsSaleComponent } from './scraps-sale/scraps-sale.component';
 const COMPONENTS = [
   ScrapsHeaderComponent,
   ScrapsComponent,
   ScrapsHomeComponent,
-  ScrapsStoreComponent
+  ScrapsStoreComponent,
+  ScrapsSaleComponent
 ]
 @NgModule({
   imports: [
     CommonModule,
     ScrapsRoutes,
+    RouterModule,
     SharedModule
   ],
   declarations: [...COMPONENTS],

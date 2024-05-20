@@ -1,7 +1,7 @@
 <div class="container-fluid pt-5 retasos">
   <div class="row mt-4">
     <div class="col-md-3" *ngFor="let item of productList">
-      <product-card [item]="item"></product-card>
+      <product-card [item]="item" (click)="goSale(item)"></product-card>
     </div>
   </div>
 </div>

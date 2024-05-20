@@ -1,3 +1,46 @@
-<p>
-  cart works!
-</p>
+<div class="container-fluid" *ngIf="cart">
+  <div class="row py-3 text-center">
+    <div class="col-md-12">
+      <span>{{ cart.getCompany().name }}</span>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row py-3 text-center">
+    <div class="col-md-12">
+      <span>CARRITO DE COMPRAS</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="text-center">Foto</th>
+              <th scope="col" class="text-center">Descripcion</th>
+              <th scope="col" class="text-center">Cantidad</th>
+              <th scope="col" class="text-center">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.getItems()">
+              <td class="align-content-center"><img src="{{item.urlImage}}" width="60px" alt="{{ item.title}}"></td>
+              <td class="align-content-center">{{ item.title}}</td>
+              <td class="align-content-center text-center">{{ item.cantidad}}</td>
+              <td class="align-content-center text-end">{{ item.total | number:".2-2" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn btn-success px-5" (click)="getTotal()"> Pagar</button>
+    </div>
+    <div class="col-md-6 text-end">
+      <p><span>Total: </span> <span>$ {{ cart.getTotal()| number:".2-2" }}</span></p>
+    </div>
+  </div>
+</div>
