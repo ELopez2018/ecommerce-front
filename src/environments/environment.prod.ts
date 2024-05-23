@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
-  WOMPI_KEY_PUB:"",
-  WOMPI_KEY_PRV:"",
-  WOMPI_KEY_EVENTS:"",
-  WOMPI_KEY_INTEGRITY:"",
+  WOMPI_PUB_KEY: "",
+  WOMPI_PRV_KEY: "",
+  WOMPI_EVENTS_KEY: "",
+  WOMPI_INTEGRITY_KEY: "",
+  URL_WEB_SITIE: "http://chichinacds.com.co/"
 };

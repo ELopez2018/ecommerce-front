@@ -10,9 +10,9 @@ export class AppComponent {
   title = 'Centro Comercial Virtual Chinchiná - Emall';
   constructor() {
     if (environment.production) {
-      console.log("Ejecusión en Producción");
+      console.log("Ejecución en Producción");
     } else {
-      console.log("Ejecusión de Desarrollo");
+      console.log("Ejecución de Desarrollo");
     }
 
   }

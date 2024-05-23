@@ -33,10 +33,13 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <button class="btn btn-success px-5" (click)="getTotal()"> Pagar</button>
+      <button class="btn btn-success px-5" (click)="goToPay()"> Pagar</button>
+
     </div>
     <div class="col-md-6 text-end">
       <p><span>Total: </span> <span>$ {{ cart.getTotal()| number:".2-2" }}</span></p>
     </div>
   </div>
 </div>
+
+>
