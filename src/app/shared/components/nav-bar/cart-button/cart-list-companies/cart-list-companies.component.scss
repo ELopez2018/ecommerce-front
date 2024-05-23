@@ -1,0 +1,36 @@
+.cart-list-companies {
+  display: block;
+  overflow: auto;
+  background-color: white;
+  min-height: 80px;
+  min-width: 95vw;
+  border: 1px solid rgb(139, 138, 138);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 10px;
+
+  .item {
+    padding: 10px 0 10px 0;
+    font-size: 12px;
+    &:hover {
+      font-weight: 600;
+      cursor: pointer;
+      background-color: #b8f395;
+      box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .cart-list-companies {
+    min-width: 300px;
+    .item {
+
+      &:hover {
+        font-weight: 600;
+        cursor: pointer;
+        background-color:#b8f395;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+      }
+    }
+  }
+}

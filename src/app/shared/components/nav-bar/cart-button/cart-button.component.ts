@@ -9,8 +9,10 @@ import { Cart } from 'src/app/core/models/cart';
   styleUrls: ['./cart-button.component.scss']
 })
 export class CartButtonComponent implements OnInit {
-  public carts: Cart[]=[];
-  public totalItems =0;
+  public carts: Cart[] = [];
+  public totalItems = 0;
+  public showMenu = false;
+  public first = false;
   constructor(
     private dataService: DataService,
     private router: Router
@@ -30,16 +32,20 @@ export class CartButtonComponent implements OnInit {
     })
 
   }
-  goToCart(){
-    if(this.carts.length === 1){
+  goToCart() {
+    if (this.carts.length === 1) {
       this.dataService.setCart(this.carts[0])
       this.router.navigateByUrl("ventas/carrito")
-    } else {
+    } else if (this.carts.length > 1) {
       this.showListCart()
     }
   }
 
-  showListCart(){
-
+  showListCart() {
+    this.showMenu = !this.showMenu
+   this.first = true
+  }
+  OnClicledChild(event: boolean) {
+    this.showMenu = event
   }
 }

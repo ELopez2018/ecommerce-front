@@ -12,6 +12,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { SaleComponent } from '../pages/sale/sale.component';
 import { CartComponent } from '../pages/cart/cart.component';
 import { SubHeaderComponent } from './components/sub-header/sub-header.component';
+import { CartListCompaniesComponent } from './components/nav-bar/cart-button/cart-list-companies/cart-list-companies.component';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -19,6 +20,7 @@ const COMPONENTS = [
   MenuResponsiveComponent,
   MenuDesktopComponent,
   CartButtonComponent,
+  CartListCompaniesComponent,
   SubNavbarComponent,
   ProductCardComponent,
   RatingComponent,

@@ -10,19 +10,23 @@
     position: absolute;
   }
 
-  .cart {
-    border-radius: 70px;
+  .button-container {
+    width: 75%;;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
       cursor: pointer;
     }
-
   }
-  .button-container {
-    width: 75%;
+  cart-list-companies{
+    position: absolute;
+    z-index: 999;
+    top: 45px;
+    right: 10px;
   }
 }
-
+.cart {
+  border-radius: 70px;
+}
 @media (min-width: 992px) {
   .cart-button {
     width: 70px;
@@ -31,14 +35,25 @@
       right: 30%;
       position: absolute;
     }
-
-  }
-  .cart {
-    border-radius: 70px;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-      cursor: pointer;
+    cart-list-companies{
+      position: absolute;
+      z-index: 999;
+      top: 65px;
+      right: 15px;
+    }
+    .button-container {
+      width: 75%;
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        cursor: pointer;
+      }
     }
 
   }
+
+
+}
+
+.show {
+  display: block !important;
 }

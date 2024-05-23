@@ -1,12 +1,12 @@
-<div class="cart-button cart  me-2 position-relative">
+<div class="cart-button cart me-2 position-relative">
   <div class="button-container position-relative" (click)="goToCart()">
-    <img
-    class=""
-    src="../../../../assets/img/cart.png"
-    width="100%"
-    alt=""
-  />
-  <span class="badge text-bg-danger">{{ this.totalItems }}</span>
+    <img class="" src="../../../../assets/img/cart.png" width="100%" alt="" />
+    <span class="badge text-bg-danger">{{ this.totalItems }}</span>
   </div>
-
+  <cart-list-companies
+    class="animate__animated animate__fadeInUp"
+    [ngClass]="{ animate__fadeOutDown: !showMenu, show: showMenu }"
+    (onCliked)="OnClicledChild($event)"
+    *ngIf="first"
+  ></cart-list-companies>
 </div>

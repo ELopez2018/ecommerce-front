@@ -1,0 +1,9 @@
+<div class="cart-list-companies">
+  <div class="container-fluid">
+    <div class="row item" (click)="goToCart(item)" *ngFor="let item of carts" >
+      <div class="col-md-12 d-flex justify-content-between">
+        {{item.getCompany().name}}  <i class="fa-solid fa-cart-shopping ms-5"></i>
+      </div>
+    </div>
+  </div>
+</div>
