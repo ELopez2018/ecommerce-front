@@ -16,7 +16,8 @@ export class DataService {
   private companySelected$: BehaviorSubject<Company> = new BehaviorSubject<Company>(<Company>{})
 
   constructor() { }
-  
+
+  // #region Carts
   public setCarts(carts: Cart[]): void {
     this.carts = carts;
     this.carts$.next(this.carts)
@@ -28,8 +29,12 @@ export class DataService {
   public getCarts$(): Observable<Cart[]> {
     return this.carts$.asObservable();
   }
+  public qtyCarts$(): Observable<number> {
+    return of(this.carts.length);
+  }
   public addCart(cart: Cart): void {
     if (!this.filterCart(cart)) {
+      console.log("salio");
       return;
     }
     this.carts.push(cart)
@@ -41,10 +46,9 @@ export class DataService {
     this.carts$.next(this.carts)
     this.totalItems$.next(this.getAllQtyItems())
   }
-  public qtyCarts$(): Observable<number> {
-    return of(this.carts.length);
-  }
+  // #endregion
 
+  // #region Product Selected
   public setProductSelected(item: Item): void {
     this.productSelected$.next(item)
   }
@@ -53,7 +57,7 @@ export class DataService {
   }
   private filterCart(cart: Cart) {
     if (this.carts.length < 1) { return true; }
-
+    console.log("filtro");
     this.carts.forEach(item => {
 
       if (item.getCompany().id === cart.getCompany().id) {
@@ -79,14 +83,18 @@ export class DataService {
     })
     return false;
   }
+  // #endregion
 
+  // #region Cart
   public setCart(cart: Cart): void {
     this.cartSelected$.next(cart)
   }
   public getCart$(): Observable<Cart> {
     return this.cartSelected$.asObservable();
   }
+  // #endregion
 
+  // #region Items
   private getAllQtyItems(): number {
     let totalItmes = 0;
     this.carts.forEach(cart => {
@@ -97,8 +105,18 @@ export class DataService {
 
     return totalItmes;
   }
-
-  getTotalItems$(): Observable<number>{
-    return  this.totalItems$.asObservable()
+  getTotalItems$(): Observable<number> {
+    return this.totalItems$.asObservable()
   }
+  // #endregion
+
+  // #region Company
+  public setCompany(company: Company): void {
+    this.companySelected$.next(company)
+  }
+  public getCompany$(): Observable<Company> {
+    return this.companySelected$.asObservable();
+  }
+  // #endregion
+
 }

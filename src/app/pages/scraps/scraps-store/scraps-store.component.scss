@@ -1,6 +1,8 @@
 .retasos{
+  height: max-content;
   background-image: url("../../../../assets/backgroinds/bg.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-}
+  min-height: 80vh;
+ }

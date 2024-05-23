@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'retazos', loadChildren: () => import('./pages/scraps/scraps.module').then(m => m.ScrapsModule),
   },
   {
+    path: 'tienda-para-perros', loadChildren: () => import('./pages/dogs-store/dogs-store.module').then(m => m.DogsStoreModule),
+  },
+  // Compartidos
+  {
     path: 'ventas', component: SaleComponent,
   },
   {

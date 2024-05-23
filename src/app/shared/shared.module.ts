@@ -11,6 +11,7 @@ import { SubNavbarComponent } from './components/sub-navbar/sub-navbar.component
 import { RatingComponent } from './components/rating/rating.component';
 import { SaleComponent } from '../pages/sale/sale.component';
 import { CartComponent } from '../pages/cart/cart.component';
+import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -22,7 +23,8 @@ const COMPONENTS = [
   ProductCardComponent,
   RatingComponent,
   SaleComponent,
-  CartComponent
+  CartComponent,
+  SubHeaderComponent
 ]
 const MODULES = [
   CommonModule,

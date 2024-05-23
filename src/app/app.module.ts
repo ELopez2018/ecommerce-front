@@ -14,8 +14,8 @@ import { SaleComponent } from './pages/sale/sale.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
-    RouterModule
+    RouterModule,
+     SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

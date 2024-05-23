@@ -1,7 +1,9 @@
-<div class="container-fluid pt-5 retasos">
-  <div class="row mt-4">
-    <div class="col-md-3" *ngFor="let item of productList">
-      <product-card [item]="item" (click)="goSale(item)"></product-card>
+<div class="retasos py-5">
+  <div class="container-fluid pt-4">
+    <div class="row">
+      <div class="col-md-2" *ngFor="let item of productList">
+        <product-card [item]="item" (click)="goSale(item)"></product-card>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg " style="background-color: #fafafa;" >
+<nav class="navbar navbar-expand-lg" style="background-color: #fafafa">
   <div class="container-fluid">
     <button
       class="navbar-toggler"
@@ -11,7 +11,10 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-center"  id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse d-flex justify-content-center"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav align-content-between">
         <li class="nav-item">
           <a
@@ -19,26 +22,13 @@
             routerLink="/inicio"
             [routerLinkActive]="'active'"
             aria-current="page"
-            href="#"
             >Inicio</a
           >
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/retazos"
-            routerLinkActive="active"
-            [routerLinkActive]="'active'"
-            >Neyi</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/mascotas"
-            [routerLinkActive]="'active'"
-            >Mascotas</a
-          >
+        <li class="nav-item" *ngFor="let menu of menus">
+          <a class="nav-link" (click)="setCompnay(menu)" routerLink="{{menu.route}}" routerLinkActive="active">
+            {{ menu.menuName }}
+          </a>
         </li>
       </ul>
       <!-- <cart-button></cart-button> -->

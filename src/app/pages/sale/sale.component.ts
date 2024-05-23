@@ -13,6 +13,8 @@ import { ModalTitleEnums, ModalTypeButtons } from 'src/app/core/enums/modal-enum
 })
 export class SaleComponent implements OnInit {
   public product!: Item;
+  public company!: Company;
+
   constructor(private dataService: DataService) {
     this.subcriptionToData()
   }
@@ -24,13 +26,18 @@ export class SaleComponent implements OnInit {
       .subscribe(data => {
         this.product = data
       })
+
+      this.dataService.getCompany$()
+      .subscribe(data => {
+        console.log({data});
+        this.company = data
+      })
   }
 
   sendCart() {
-    let company: Company = { id: 1, name: 'Neyi' }
     let items: Item[] = []
     items.push({ ...this.product })
-    let cart = new Cart(items, company)
+    let cart = new Cart(items,  this.company)
     this.dataService.addCart(cart)
 
     Swal.fire({

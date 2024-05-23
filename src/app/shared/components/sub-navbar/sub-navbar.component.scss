@@ -1,20 +1,32 @@
 .sub-navbar {
+  width: 100vw;
+  height: auto;
+  color: white;
+  background: rgba(255, 255, 255, 0.13);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(209, 213, 219, 0.171);
+
   .sub-navbar-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     list-style: none;
-    width: 100vw;
-    height: auto;
-    padding: 0.5rem;
-    color: white;
-    background: rgba(255, 255, 255, 0.13);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-    border: 1.5px solid rgba(209, 213, 219, 0.171);
   }
-  .nav-link{
+
+  .nav-link {
     font-size: 22px;
     font-family: 'Courier New', Courier, monospace;
+  }
+}
+
+@media (width: 1366px) {
+  .sub-navbar {
+    width: 98.6vw;
+  }
+}
+@media (width: 1880px) {
+  .sub-navbar {
+    width: 99.9vw;
   }
 }
