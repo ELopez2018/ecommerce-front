@@ -2,12 +2,14 @@
 <div class="container-fluid">
   <div class="row title py-3 text-center">
     <div class="col-md-12 display-6">
-      <i class="fa-solid fa-cart-shopping me-5"></i><strong> <span>CARRITO DE COMPRAS</span></strong><i class="fa-solid fa-cart-shopping  ms-5"></i>
+      <i class="fa-solid fa-cart-shopping me-5"></i
+      ><strong> <span>CARRITO DE COMPRAS</span></strong
+      ><i class="fa-solid fa-cart-shopping ms-5"></i>
     </div>
   </div>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="cart.getItems()">
     <div class="col-md-12">
       <div class="table-responsive">
         <table class="table">
@@ -17,29 +19,218 @@
               <th scope="col" class="text-center">Descripcion</th>
               <th scope="col" class="text-center">Cantidad</th>
               <th scope="col" class="text-center">Precio</th>
+              <th scope="col" class="text-center"></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of cart.getItems()">
-              <td class="align-content-center"><img src="{{item.urlImage}}" width="60px" alt="{{ item.title}}"></td>
-              <td class="align-content-center">{{ item.title}}</td>
-              <td class="align-content-center text-center">{{ item.cantidad}}</td>
-              <td class="align-content-center text-end">{{ item.total | number:".2-2" }}</td>
+            <tr *ngFor="let item of cart.getItems();  index as i">
+              <td class="align-content-center">
+                <img
+                  src="{{ item.urlImage }}"
+                  width="60px"
+                  alt="{{ item.title }}"
+                />
+              </td>
+              <td class="align-content-center">{{ item.title }}</td>
+              <td class="align-content-center text-center">
+                {{ item.cantidad }}
+              </td>
+              <td class="align-content-center text-end">
+                {{ item.total | number : ".2-2" }}
+              </td>
+
+              <td class="align-content-center  fa-icon text-center">
+                <i class="fa-solid fa-trash" (click)="remove(i)"></i>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <button class="btn btn-success px-5" (click)="goToPay()"> Pagar</button>
+  <fieldset>
+    <legend>Datos de la compra</legend>
+    <div class="row" [formGroup]="form">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="input-group has-validation">
+            <div class="col-md-4">
+              <div
+                class="form-floating  me-1"
+                [ngClass]="{
+                  'is-invalid': legalIdTypeInValid,
+                  'is-valid': legalIdTypeValid
+                }"
+              >
+                <select
+                  class="form-select"
+                  id="legalIdType"
+                  aria-label="Floating label select example"
+                  [ngClass]="{
+                    'is-invalid': legalIdTypeInValid,
+                    'is-valid': legalIdTypeValid
+                  }"
+                  formControlName="legalIdType"
+                >
+                  <option value="null">Seleccione</option>
+                  <option [value]="'CC'">Cédula de Ciudadanía</option>
+                  <option [value]="'CE'">Cédula de Extranjería</option>
+                  <option [value]="'NIT'">NIT</option>
+                  <option [value]="'PP'">Pasaporte</option>
+                  <option [value]="'TI'">Targeta Identificación</option>
+                  <option [value]="'DNI'">Documento Nacional Iden.</option>
+                  <option [value]="'RG'">Registro General</option>
+                </select>
+                <label for="legalIdType">Tipo</label>
+              </div>
+            </div>
 
+            <div class="col-md-8">
+              <div
+                class="form-floating mb-3"
+                [ngClass]="{
+                  'is-invalid': legalIdInValid,
+                  'is-valid': legalIdValid
+                }"
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="legalId"
+                  [ngClass]="{
+                    'is-invalid': legalIdInValid,
+                    'is-valid': legalIdValid
+                  }"
+                  id="legalId"
+                  placeholder="name@example.com"
+                />
+                <label for="legalId">Número de documento</label>
+                <div class="invalid-feedback">
+                  Por favor ingrese un número válido
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group has-validation">
+            <div class="col-md-4">
+              <div
+                class="form-floating mb-3 me-1"
+                [ngClass]="{
+                  'is-invalid': phoneCodeInvalid,
+                  'is-valid': phoneCodeValid
+                }"
+              >
+                <input
+                  id="phoneNumberPrefix"
+                  type="tel"
+                  class="form-control"
+                  formControlName="phoneNumberPrefix"
+                  [ngClass]="{
+                    'is-invalid': phoneCodeInvalid,
+                    'is-valid': phoneCodeValid
+                  }"
+                  placeholder="name@example.com"
+                  readonly
+                />
+                <label for="phoneNumberPrefix">Codigo</label>
+                <div class="invalid-feedback">Codigo Invalido</div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div
+                class="form-floating mb-3"
+                [ngClass]="{
+                  'is-invalid': phoneNumberInValid,
+                  'is-valid': phoneNumberValid
+                }"
+              >
+                <input
+                  type="tel"
+                  class="form-control"
+                  formControlName="phoneNumber"
+                  [ngClass]="{
+                    'is-invalid': phoneNumberInValid,
+                    'is-valid': phoneNumberValid
+                  }"
+                  id="phoneNumber"
+                  placeholder="name@example.com"
+                />
+                <label for="phoneNumber">Número de Teléfono</label>
+                <div class="invalid-feedback">
+                  Por favor ingrese un número válido
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group has-validation">
+          <div
+            class="form-floating mb-3"
+            [ngClass]="{
+              'is-invalid': fullNameInValid,
+              'is-valid': fullNameValid
+            }"
+          >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="fullName"
+              [ngClass]="{
+                'is-invalid': fullNameInValid,
+                'is-valid': fullNameValid
+              }"
+              id="fullname"
+              placeholder="name@example.com"
+            />
+            <label for="fullname">Nombres y apellidos</label>
+            <div class="invalid-feedback">
+              Por favor ingrese un nombre valido
+            </div>
+          </div>
+        </div>
+        <div class="input-group has-validation">
+          <div
+            class="form-floating mb-3"
+            [ngClass]="{ 'is-invalid': emailInValid, 'is-valid': emailValid }"
+          >
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': emailInValid, 'is-valid': emailValid }"
+              id="email"
+              placeholder="name@example.com"
+            />
+            <label for="email">Correo Electrónico</label>
+            <div class="invalid-feedback">
+              Por favor ingrese un Correo Electronico válido
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 text-end">
-      <p><span>Total: </span> <span>$ {{ cart.getTotal()| number:".2-2" }}</span></p>
+  </fieldset>
+  <div class="row py-4">
+    <div class="col-md-6 text-center text-md-end py-3">
+      <button
+        class="btn btn-success px-5"
+        [ngClass]="{ disabled: disabledButtonPay }"
+        [disabled]="disabledButtonPay"
+        (click)="goToPay()"
+      >
+        Pagar
+      </button>
+    </div>
+    <div class="col-md-6 text-center text-md-end py-3" *ngIf="cart">
+      <div>
+        <span>Total:</span>
+        <span>$ {{ cart.getTotal() | number : ".2-2" }}</span>
+      </div>
     </div>
   </div>
 </div>
-
->

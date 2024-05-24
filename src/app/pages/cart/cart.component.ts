@@ -5,6 +5,8 @@ import Swal from 'sweetalert2'
 import { UtilsService } from '../../shared/Utils/Utils.service';
 import { WidgetCheckoutData } from 'src/app/core/interfaces/wompi';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Item } from 'src/app/core/interfaces/item';
 declare var ePayco: any;
 declare var WidgetCheckout: any;
 
@@ -16,79 +18,135 @@ declare var WidgetCheckout: any;
 export class CartComponent implements OnInit {
   public cart!: Cart;
   public total = 0;
-  public sign!: string;
   public reference!: string;
   public checkout: any;
   public dataToPay!: WidgetCheckoutData;
   private currency = 'COP'
-  constructor(private dataService: DataService, private utilsService: UtilsService) {
+  public form!: FormGroup;
+  constructor(
+    private dataService: DataService,
+    private utilsService: UtilsService,
+    private fb: FormBuilder
+  ) {
     this.dataService.getCart$().subscribe(data => {
       this.cart = data;
     })
     this.reference = `${this.utilsService.getCodeReference()}`;
-    this.utilsService.wompiIntegritySignature(this.reference, 25000, 'COP').then(data => {
-      this.sign = data
-    })
   }
 
   ngOnInit() {
+    this.IniciatileForm()
   }
-
+  IniciatileForm() {
+    this.form = this.fb.group({
+      fullName: new FormControl(null, [Validators.required, Validators.minLength(4)]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      phoneNumberPrefix: new FormControl("+57", [Validators.required, Validators.minLength(3)]),
+      phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]),
+      legalId: new FormControl(null, [Validators.required, Validators.minLength(7), Validators.maxLength(11)]),
+      legalIdType: new FormControl(null, [Validators.required])
+    })
+  }
   getTotal() {
     this.total = this.cart.getTotal()
   }
 
-  async goToPay() {
-    this.checkout = new WidgetCheckout(await this.dataToPayment())
-    console.log( this.checkout);
+  get fullNameInValid() {
+    return this.form.get('fullName')?.invalid && this.form.get('fullName')?.touched
+  }
 
-    this.checkout.open(function (result: any, error:any) {
+  get fullNameValid() {
+    return this.form.get('fullName')?.valid && this.form.get('fullName')?.touched
+  }
+  get emailInValid() {
+    return this.form.get('email')?.invalid && this.form.get('email')?.touched
+  }
+  get emailValid() {
+    return this.form.get('email')?.valid && this.form.get('email')?.touched
+  }
+
+  get phoneCodeInvalid() {
+    return this.form.get('phoneNumberPrefix')?.invalid && this.form.get('phoneNumberPrefix')?.touched
+  }
+
+  get phoneCodeValid() {
+    return this.form.get('phoneNumberPrefix')?.valid
+  }
+  get phoneNumberInValid() {
+    return this.form.get('phoneNumber')?.invalid && this.form.get('phoneNumber')?.touched
+  }
+  get phoneNumberValid() {
+    return this.form.get('phoneNumber')?.valid && this.form.get('phoneNumber')?.touched
+  }
+
+  get legalIdTypeInValid() {
+    return this.form.get('legalIdType')?.invalid && this.form.get('legalIdType')?.touched
+  }
+  get legalIdTypeValid() {
+    return this.form.get('legalIdType')?.valid && this.form.get('legalIdType')?.touched
+  }
+
+  get legalIdInValid() {
+    return this.form.get('legalId')?.invalid && this.form.get('legalId')?.touched
+  }
+  get legalIdValid() {
+    return this.form.get('legalId')?.valid && this.form.get('legalId')?.touched
+  }
+
+  async goToPay() {
+    console.log(await this.dataToPayment());
+    this.checkout = new WidgetCheckout(await this.dataToPayment())
+    this.checkout.open(function (result: any, error: any) {
       var transaction = result.transaction;
       console.log("Transaction ID: ", transaction.id);
       console.log("Transaction object: ", transaction);
-      console.log({error});
+      console.log(error ? error : "Sin errores");
     });
   }
 
   async dataToPayment(): Promise<any> {
-    let data: WidgetCheckoutData = <WidgetCheckoutData>{}
-    const reference = this.utilsService.getCodeReference()
+    console.log(this.customerData());
     let signature: any;
-    signature = await this.utilsService.wompiIntegritySignature(reference,this.amount(10000.50),this.currency)
-    console.log({signature});
-    data = {
+    const reference = this.utilsService.getCodeReference()
+    const amount = this.amount(this.cart.getTotal())
+    signature = await this.utilsService.wompiIntegritySignature(reference, amount, this.currency)
+    return {
       currency: this.currency,
-      amountInCents: this.amount(10000.50),
-      signature: {integrity : signature},
+      amountInCents: amount,
+      signature: { integrity: signature },
       reference: reference,
       publicKey: environment.WOMPI_PUB_KEY,
       redirectUrl: environment.URL_WEB_SITIE,
-      taxInCents: this.taxes(),
+      // taxInCents: this.taxes(),
       customerData: this.customerData(),
-      shippingAddress: this.shippingAddress(),
-      payment_method: this.paymenMmethod(),
-      expirationTime: '2024-06-09T20:28:50.000Z',
+      // shippingAddress: this.shippingAddress(),
     }
-    return data
   }
-
   amount(value: number) {
     return value * 100
   }
+
   taxes() {
     return {
       vat: 1900,
       consumption: 800,
     }
   }
+  /* email: "estarlin.elv@gmail.com",
+   fullName: "Estarlin Lopez",
+   phoneNumber: "3204454846",
+   phoneNumberPrefix: '+57',
+   legalId: "1365875",
+   legalIdType: 'CE',*/
   customerData() {
+    const data: Data = this.form.value
     return {
-      email: "estarlin.elv@gmail.com",
-      fullName: "Estarlin Lopez",
-      phoneNumber: "3204454846",
-      phoneNumberPrefix: '+57',
-      legalId: "1365875",
-      legalIdType: 'CE',
+      email: data.email,
+      fullName: data.fullName,
+      phoneNumber: data.phoneNumber,
+      phoneNumberPrefix: data.phoneNumberPrefix,
+      legalId: data.legalId,
+      legalIdType: data.legalIdType,
     }
   }
 
@@ -108,4 +166,21 @@ export class CartComponent implements OnInit {
       phone_number: '3991111111',
     }
   }
+
+  get disabledButtonPay() {
+    return this.form.invalid
+  }
+
+  remove(item: number){
+    this.cart.removeItem(item)
+  }
+}
+
+interface Data {
+  fullName: string;
+  email: string;
+  phoneNumberPrefix: string;
+  phoneNumber: number;
+  legalId: string;
+  legalIdType: string;
 }

@@ -27,9 +27,9 @@ export class SaleComponent implements OnInit {
         this.product = data
       })
 
-      this.dataService.getCompany$()
+    this.dataService.getCompany$()
       .subscribe(data => {
-        console.log({data});
+        console.log({ data });
         this.company = data
       })
   }
@@ -37,7 +37,7 @@ export class SaleComponent implements OnInit {
   sendCart() {
     let items: Item[] = []
     items.push({ ...this.product })
-    let cart = new Cart(items,  this.company)
+    let cart = new Cart(items, this.company)
     this.dataService.addCart(cart)
 
     Swal.fire({

@@ -9,7 +9,7 @@ export interface WidgetCheckoutData {
   shippingAddress: ShippingAddress;
   payment_method: Paymentmethod;
   signature: any;
-  expirationTime: string;
+  expirationTime?: string;
 }
 interface Paymentmethod {
   type: string;
