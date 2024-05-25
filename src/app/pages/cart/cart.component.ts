@@ -7,6 +7,7 @@ import { WidgetCheckoutData } from 'src/app/core/interfaces/wompi';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Item } from 'src/app/core/interfaces/item';
+import { ModalMessagesEnums, ModalTitleEnums, ModalTypeButtons } from 'src/app/core/enums/modal-enums.enum';
 declare var ePayco: any;
 declare var WidgetCheckout: any;
 
@@ -94,19 +95,24 @@ export class CartComponent implements OnInit {
   }
 
   async goToPay() {
-    console.log(await this.dataToPayment());
     this.checkout = new WidgetCheckout(await this.dataToPayment())
-    this.checkout.open(function (result: any, error: any) {
-      var transaction = result.transaction;
-      console.log("Transaction ID: ", transaction.id);
-      console.log("Transaction object: ", transaction);
-      console.log(error ? error : "Sin errores");
+    Swal.fire({
+      title: ModalTitleEnums.WARNING,
+      text: ModalMessagesEnums.PAY_WARNING,
+      icon: ModalTypeButtons.WARNING,
+      imageUrl: "../../../assets/img/wompi_button_fin.png",
+    }).then(resp => {
+      this.checkout.open(function (result: any, error: any) {
+        var transaction = result.transaction;
+        console.log("Transaction ID: ", transaction.id);
+        console.log("Transaction object: ", transaction);
+        console.log(error ? error : "Sin errores");
+      });
     });
   }
 
   async dataToPayment(): Promise<any> {
-    console.log(this.customerData());
-    let signature: any;
+    let signature: string;
     const reference = this.utilsService.getCodeReference()
     const amount = this.amount(this.cart.getTotal())
     signature = await this.utilsService.wompiIntegritySignature(reference, amount, this.currency)
@@ -132,12 +138,6 @@ export class CartComponent implements OnInit {
       consumption: 800,
     }
   }
-  /* email: "estarlin.elv@gmail.com",
-   fullName: "Estarlin Lopez",
-   phoneNumber: "3204454846",
-   phoneNumberPrefix: '+57',
-   legalId: "1365875",
-   legalIdType: 'CE',*/
   customerData() {
     const data: Data = this.form.value
     return {
@@ -171,7 +171,7 @@ export class CartComponent implements OnInit {
     return this.form.invalid
   }
 
-  remove(item: number){
+  remove(item: number) {
     this.cart.removeItem(item)
   }
 }

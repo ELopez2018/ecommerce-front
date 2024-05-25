@@ -10,7 +10,7 @@
 
   <script defer src="https://cdn.wompi.co/libs/js/v1.js"
     data-public-key="pub_test_mH0kyjChEMb9iGYXpUBZNujzBu2l9S0a"></script>
-    
+
     <script
     type="text/javascript"
     src="https://checkout.wompi.co/widget.js"
@@ -42,12 +42,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      console.log("inicio");
       function initializeWompi() {
         $wompi.initialize(function (data, error) {
           if (error === null) {
             var sessionId = data.sessionId
-            console.log(sessionId);
           }
         })
       }

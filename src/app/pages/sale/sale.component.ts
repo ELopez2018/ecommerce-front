@@ -4,7 +4,7 @@ import { Item } from 'src/app/core/interfaces/item';
 import { Cart } from 'src/app/core/models/cart';
 import { Company } from 'src/app/core/interfaces/company';
 import Swal from 'sweetalert2'
-import { ModalTitleEnums, ModalTypeButtons } from 'src/app/core/enums/modal-enums.enum';
+import { ModalMessagesEnums, ModalTitleEnums, ModalTypeButtons } from 'src/app/core/enums/modal-enums.enum';
 
 @Component({
   selector: 'sale',
@@ -29,7 +29,7 @@ export class SaleComponent implements OnInit {
 
     this.dataService.getCompany$()
       .subscribe(data => {
-        console.log({ data });
+        ({ data });
         this.company = data
       })
   }
@@ -42,7 +42,7 @@ export class SaleComponent implements OnInit {
 
     Swal.fire({
       title: ModalTitleEnums.CART,
-      text: ModalTitleEnums.SALE_TO_CART,
+      text: ModalMessagesEnums.SALE_TO_CART,
       icon: ModalTypeButtons.SUCCESS
     });
   }

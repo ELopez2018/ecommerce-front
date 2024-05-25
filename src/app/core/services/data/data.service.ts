@@ -34,7 +34,6 @@ export class DataService {
   }
   public addCart(cart: Cart): void {
     if (!this.filterCart(cart)) {
-      console.log("salio");
       return;
     }
     this.carts.push(cart)
@@ -57,11 +56,8 @@ export class DataService {
   }
   private filterCart(cart: Cart) {
     if (this.carts.length < 1) { return true; }
-    console.log("filtro");
     this.carts.forEach(item => {
-
       if (item.getCompany().id === cart.getCompany().id) {
-
         item.getItems().forEach(i => {
           cart.getItems().forEach(data => {
             if (data.id == i.id) {
