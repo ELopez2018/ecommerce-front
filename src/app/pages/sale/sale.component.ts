@@ -5,6 +5,7 @@ import { Cart } from 'src/app/core/models/cart';
 import { Company } from 'src/app/core/interfaces/company';
 import Swal from 'sweetalert2'
 import { ModalMessagesEnums, ModalTitleEnums, ModalTypeButtons } from 'src/app/core/enums/modal-enums.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sale',
@@ -15,7 +16,10 @@ export class SaleComponent implements OnInit {
   public product!: Item;
   public company!: Company;
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private router:Router
+  ) {
     this.subcriptionToData()
   }
 
@@ -45,5 +49,8 @@ export class SaleComponent implements OnInit {
       text: ModalMessagesEnums.SALE_TO_CART,
       icon: ModalTypeButtons.SUCCESS
     });
+  }
+  gobBack(){
+    this.router.navigateByUrl(`${this.company.route}/tienda`)
   }
 }

@@ -29,7 +29,7 @@
     &:hover {
       cursor: pointer;
       box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-      transform: scale(1.02);
+      transform: scale(1.005);
       /* Igual que: scaleX(0.7) scaleY(0.7) */
     }
   }
@@ -51,6 +51,11 @@
     display: flex;
     justify-content: space-between;
 
+  }
+  .btn{
+    &:hover {
+    transform: scale(1.1);
+    }
   }
 }
 

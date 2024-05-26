@@ -19,7 +19,8 @@
         <p class="card-description" [innerHTML]="product.descripcion"></p>
       </div>
       <div class="actions">
-        <button class="btn btn-success shadow px-5" (click)="sendCart()" >Comprar</button>
+        <button class="btn btn-inf shadow px-5" (click)="gobBack()" ><i class="fa-solid fa-chevron-left"></i> Regresar</button>
+        <button class="btn btn-dark shadow px-5 ms-4" (click)="sendCart()" >Comprar <i class="fa-solid fa-cart-shopping"></i></button>
       </div>
     </div>
   </div>

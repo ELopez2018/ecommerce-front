@@ -8,7 +8,7 @@ export const CompaniesMock: Company[] = [
     name: "NEYI, RETASOS DEL EJE CAFETERO",
     description: "Emprendimiento local hechos con recursos propios y mucho trabajo",
     route: "/retazos",
-    menuName:"Retasos"
+    menuName: "Retazos"
   },
   {
     id: 101,
@@ -16,7 +16,7 @@ export const CompaniesMock: Company[] = [
     name: "PET SHOPS",
     description: "Emprendimiento local hechos con recursos propios y mucho trabajo",
     route: "/tienda-para-perros",
-    menuName:"Perros"
+    menuName: "PET SHOPS"
   },
 
 ]

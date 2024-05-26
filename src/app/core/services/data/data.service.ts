@@ -83,7 +83,7 @@ export class DataService {
 
   // #region Cart
   public setCart(cart: Cart): void {
-    this.cartSelected$.next(cart)
+    this.cartSelected$.next(this.carts.find(c => c.getCompany().id === cart.getCompany().id) ?? <Cart>{})
   }
   public getCart$(): Observable<Cart> {
     return this.cartSelected$.asObservable();

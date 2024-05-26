@@ -32,11 +32,20 @@ export class ProductCardComponent implements OnInit {
     items.push({ ...this.item })
     let cart = new Cart(items,  this.company)
     this.dataService.addCart(cart)
+    
     Swal.fire({
       title: ModalTitleEnums.CART,
       text: ModalMessagesEnums.SALE_TO_CART,
       icon: ModalTypeButtons.SUCCESS,
-      
+      showCancelButton: true,
+      confirmButtonText: `
+      Ir  al Carrito  <i class="fa-solid fa-cart-shopping"></i>`,
+      cancelButtonText: `Continuar`,
+    }).then(resp=>{
+      if(resp.isConfirmed){
+        this.dataService.setCart(cart)
+        this.router.navigateByUrl('/ventas/carrito')
+      }
     });
   }
   see(){
