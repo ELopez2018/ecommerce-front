@@ -13,10 +13,10 @@ export const CompaniesMock: Company[] = [
   {
     id: 101,
     nit: "01020304050607",
-    name: "PET SHOPS",
+    name: "Pets-Shop",
     description: "Emprendimiento local hechos con recursos propios y mucho trabajo",
     route: "/tienda-para-perros",
-    menuName: "PET SHOPS"
+    menuName: "Pets-Shop"
   },
 
 ]

@@ -1,0 +1,27 @@
+.container {
+  background-color: white;
+
+}
+
+.main {
+  background-color: rgb(26, 24, 24);
+  color: white;
+}
+
+.button-p {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2px;
+  margin-bottom: 5px;
+  min-width: 36px;
+  min-height: 36px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(18, 18, 18, 0.1);
+  border-color: var(--dc-button-borderColor, rgba(18, 18, 18, 0.1));
+  background-color: rgb(117, 81, 3);
+  cursor: pointer;
+}

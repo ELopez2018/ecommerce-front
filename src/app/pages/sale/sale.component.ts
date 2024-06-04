@@ -51,6 +51,7 @@ export class SaleComponent implements OnInit {
     });
   }
   gobBack(){
+    console.log("back");
     this.router.navigateByUrl(`${this.company.route}/tienda`)
   }
 }

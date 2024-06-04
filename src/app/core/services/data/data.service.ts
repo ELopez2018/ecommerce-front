@@ -14,6 +14,7 @@ export class DataService {
   private cartSelected$: BehaviorSubject<Cart> = new BehaviorSubject<Cart>(<Cart>{})
   private totalItems$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   private companySelected$: BehaviorSubject<Company> = new BehaviorSubject<Company>(<Company>{})
+  private lastRoute$: BehaviorSubject<string> = new BehaviorSubject<string>("")
 
   constructor() { }
 
@@ -115,4 +116,13 @@ export class DataService {
   }
   // #endregion
 
+  // #region Route
+
+  public setRoute(route: string): void {
+    this.lastRoute$.next(route)
+  }
+  public getRoute$(): Observable<string> {
+    return this.lastRoute$.asObservable();
+  }
+  // #endregion
 }
