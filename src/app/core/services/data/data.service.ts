@@ -102,6 +102,9 @@ export class DataService {
 
     return totalItmes;
   }
+  updateItems(){
+    this.totalItems$.next(this.getAllQtyItems())
+  }
   getTotalItems$(): Observable<number> {
     return this.totalItems$.asObservable()
   }

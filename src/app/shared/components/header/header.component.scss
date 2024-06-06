@@ -13,10 +13,15 @@
   .title {
     font-weight: bold;
   }
+  .input-group{
+    max-width: 100%;
+    margin: 0 auto;
+  }
   .input-search{
     border-radius: 60px;
     border-color: rgb(12, 176, 218);
     border-width: 1px;
+
   }
   .icon-search{
     border-radius: 50px;
@@ -33,6 +38,10 @@
     .title {
 
       font-size: 2.5rem;
+    }
+    .input-group{
+      max-width: 600px;
+      margin: 0 auto;
     }
   }
 }

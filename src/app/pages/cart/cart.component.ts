@@ -173,6 +173,7 @@ export class CartComponent implements OnInit {
 
   remove(item: number) {
     this.cart.removeItem(item)
+    this.dataService.updateItems()
   }
 }
 

@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { SaleComponent } from './pages/sale/sale.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,11 @@ import { SaleComponent } from './pages/sale/sale.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-     SharedModule
+    SharedModule,
+    CarouselModule,
+    BrowserModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

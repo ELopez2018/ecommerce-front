@@ -1,7 +1,7 @@
 <div class="cart-button cart me-2 position-relative">
   <div class="button-container position-relative" (click)="goToCart()">
     <img class="" src="../../../../assets/img/cart.png" width="100%" alt="" />
-    <span class="badge text-bg-danger" *ngIf="carts && carts.length > 0">{{ this.totalItems }}</span>
+    <span class="badge text-bg-danger" *ngIf="carts && carts.length > 0 && totalItems > 0">{{ this.totalItems }}</span>
   </div>
   <cart-list-companies
     class="animate__animated animate__fadeInUp"

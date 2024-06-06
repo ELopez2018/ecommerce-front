@@ -14,6 +14,9 @@ import { CartComponent } from '../pages/cart/cart.component';
 import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 import { CartListCompaniesComponent } from './components/nav-bar/cart-button/cart-list-companies/cart-list-companies.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FooterComponent } from './components/footer/footer.component';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -27,12 +30,15 @@ const COMPONENTS = [
   RatingComponent,
   SaleComponent,
   CartComponent,
-  SubHeaderComponent
+  SubHeaderComponent,
+  CarouselComponent,
+  FooterComponent
 ]
 const MODULES = [
   CommonModule,
   RouterModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  CarouselModule,
 ]
 
 @NgModule({
